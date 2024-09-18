@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>`
+<head>
+    <!--- to input querry text to search for product through prod_list1.html---->
+    <meta charset="UTF-8" />
+    <title>input search text</title>
+</head>
+<body>
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <h3> Search By Product's Category</h3>
+    <form  action="prod_list_by_products" method="POST">
+        <select name="querry-text"  id="querry-text" placeholder="Select Farm">
+            <option value="" selected>Select Product Sherif</option>
+            {{products}}
+            {% for product in products %}
+                <option name="querry-text" id="querry-text" 
+                value="{{product.prod_category}}"> {{product.prod_category}}</option> product
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit"> 
+    </form>
+</div>
+{%endblock%}
+</body>
+</html>

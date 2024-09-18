@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"   dir="ltr">
+<head>
+<title>Add Farm</title>
+
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<style>
+	.container{
+		text-align:left;
+	}
+	h4{
+		text-align:center ;
+		font-size: larger;
+			}
+	.container-owner{
+		display:inline;
+		justify-content: space-between;
+			}
+	.container-farm{
+		display:inline;
+		justify-content: space-between;
+			}
+	.owner{
+		display:inline;
+		text-align:right;
+		justify-content:flex-start;
+			}
+	.farm{
+		display:flex;
+		text-align:right;
+		justify-content:flex-start;
+			}
+	.text-dir{
+		text-align: right;
+		}
+	input[type="text"] {
+      width: 20cm;
+      height: 1cm;
+			text-align: right;
+			color:black;
+			background-color:white;
+    }
+  
+	</style>
+</head>
+<body dir="rtl"> 
+  	{% extends "index.html" %}
+  	{% block content%}
+	<div class="container">
+		<a href="{{url_for('home')}}" class="home-button"> Home page </a>
+		&nbsp
+		<a href="dashboard" class="btn btn-warning" role="button" data-bs-toggle="button">Owner Dashboard</a>  
+ 		{% if current_user.name == 'admin'%} 
+		  <a href="admin_dashboard" class="btn btn-warning" role="button" data-bs-toggle="button">Dashboard</a>  
+ 		{% endif%}
+		<h5>Wellcom {{ current_user.name }}</h5>
+   	<h3>*** اضافه مزرعه الى السوق ***</h3>
+		<form class="text-dir" action="/add_new_farm"  method="POST" >
+			<div class="container-owner">
+				<h4> بيانات المالك</h4>
+				<br>
+				<div class="owner">
+						<button type="button" class="btn btn-dark btn-sm" placeholser="ID">{{owner.id}}</button>
+						<input type="hidden" name="owner_id" value="{{owner.id}}">
+						&nbsp&nbsp&nbsp
+						اﻷسم&nbsp<button 		type="button" class="btn btn-primary btn-sm" placeholser="Name">{{owner.name}}</button>
+						&nbsp&nbsp&nbsp
+						<!input type="hidden" name="name" value="{{owner.name}}">
+						تليفون&nbsp<button 		type="button" class="btn btn-primary btn-sm" placeholser="phone">{{owner.phone}}</button>
+						<input type="hidden" name="phone" value="{{owner.phone}}">
+						&nbsp&nbsp&nbsp
+						بريد الكترونى&nbsp<button type="button" class="btn btn-primary btn-sm" placeholser="E-Mail">{{owner.email}}</button>
+						<input type="hidden" name="email" value="{{owner.email}}">
+					</div>
+  			<div class="farm"></div>
+				<hr>
+				<h4> بيانات المزرعه </h4>				
+				<br>
+				اسم المزرعه<input type="text"  id="name"  name="name" placeholder="Farm Name">
+					&nbsp&nbsp
+
+					<label for="address1">
+					موقع المزرعه-1&nbsp</label><select name="address1" id="address1"  	placeholder="Select Address-1">&nbsp
+								<option value="select"> Select Address1 		</option>
+								<option value="حدايق امستردام">حدايق امستردام 	</option> 
+								<option value="حدايق نابولى">حدايق نابولى 		</option> 
+								<option value="حدايق فالينسيا">حدايق فالينسيا 	</option> 
+								<option value="بحدايق بولونيا"> حدايق بولونيا	</option> 
+								<option value="حدايق لوزان "> حدايق لوزان		</option> 
+								<option value="حدايق فيينا">حدايق فيينا			</option> 
+								<option value="حدايق بافاريا">حدايق بافاريا		</option> 
+								<option value="حدايق بيرن">حدايق بيرن			</option> 
+								<option value="حدايق مرسيليا">حدايق مرسيليا 	</option> 
+								<option value="حدايق اوديسا">حدايق اوديسا		</option> 
+								<option value="">--------------------</option>
+								<option value="الريف البرتغالي">الريف البرتغالي </option> 
+								<option value="الريف اﻷسباتي">الريف اﻷسباتي		</option> 
+								<option value="الريف اﻷيرلندي">الريف اﻷيرلندي	</option> 
+								<option value="الريف النرويجي">الريف النرويجي	</option> 
+								<option value="الريف الدنماركي">الريف الدنماركي	</option> 
+								<option value="الريف السويسري">الريف السويسري	</option>
+								<option value="">--------------------</option> 
+								<option value="الريف النمساوي">الريف النمساوي	</option> 
+								<option value="الربف الهولندي">الربف الهولندي	</option> 
+								<option value="الريف البلجيكي">الريف البلجيكي	</option> 
+								<option value="الريف السويدى">الريف السويدى		</option> 
+								<option value="الريف الفرنسي">الريف الفرنسي		</option> 
+								<option value="الريف اﻷلماني"> الريف اﻷلماني	</option> 
+								<option value="الريف اﻷيطالي">الريف اﻷيطالي		</option> 
+								<option value=""></option>
+								<option value=""></option>
+						</select>
+						&nbsp&nbsp
+						موقع المزرعه-2&nbsp<input type="text" id="address2" name="address2"  placeholder="Address-2">
+					</div>
+					<hr>
+					<div >
+	  				<button type="submit" class="btn btn-danger">Save</button>
+					</div>
+			</form>
+		</div>
+{% endblock %}
+</body>
+</html>

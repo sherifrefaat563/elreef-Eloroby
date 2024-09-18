@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en"    dir="ltr">
+
+<head>
+  <meta name=”viewport” content=”width=device-width, initial-scale=1.0″>
+  <meta charset="utf-8">
+  
+  <title>Complains Page</title>
+
+<style>
+  .card-header{text-align: center;
+  color:black;
+  font-weight: bold;}
+
+  .card-title{
+    text-align: center;
+    text-decoration: underline;
+    color:black;
+    font-weight: bolder;}
+</style>
+
+</head>
+<body>
+  {% extends "index.html" %}
+  {% block content%}
+    <div class="container">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">أعطال الكهرباء</div>
+        <div class="card-body">
+          <h5 class="card-title">تليفون: 01019201294</h5>
+          <p class="card-text">م/محمد صيانه الريف</p>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">أعطال اﻷبار والري</div>
+        <div class="card-body">
+          <h5 class="card-title">تليفون: 01019301992</h5>
+          <p class="card-text">م/محمد صيانه الريف
+          </p>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">تليفون: 01019301992</h5>
+            <p class="card-text">م/محمد صيانه الريف
+             </p>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

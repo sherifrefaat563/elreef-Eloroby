@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html  lang="en"    dir="ltr">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ current_user.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css') }}">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
+</script>
+<!-- requested from products.html page -->
+</head>
+<body dir="rtl"> 
+    {% extends "index.html" %}
+    {% block content %}
+    <div class="container">
+        <a href="{{url_for('home')}}" class="home-button"> Home page </a> 
+        <h5>مرحبا ...{{ current_user.name }}
+            <i class="fa fa-user"></i></h5>
+        <h2>*** محتويات سله الشراء ***</h2>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>رقم</th>
+                    <th>اسم الصنف</th>
+                    <th>المزرعه</th>
+                    <th>السعر</th>
+                    <th>الكميه</th>
+                    <th>اجمالى السعر</th>
+                    <th>الحاله</th>
+                    <th>تاريخ/ساعه الطلب</th>
+                    <th>تعديل</th>
+                    <th>الغاء</th>
+                </tr>
+            </thead>
+            <tbody id="farm-list">
+                {% for item, farm , product in items %}
+                <strong>
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ product.prod_name}}</td>
+                    <td>{{ farm.name }}</td>
+                    <td>{{ item.unit_price }}</td>
+                    <td>{{ item.quantity }}{{ item.package }}</td>
+                    <td>{{ item.unit_price * item.quantity}}</td>
+                    <td>{{ item.order_status }}</td>
+                    <td>{{ item.event_datetime }}</td>
+                    <td><a href="{{ url_for('edit_cart', 
+                        item_id=item.id) }}" aria-label="Twitter">
+                        <i class="fa fa-edit" style="font-size:24px"></i>
+                          </a></td>  
+                    <td><a href="{{ url_for('delete_item_from_cart', item_id=item.id) }}" aria-label="Twitter"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="POST"  action="/create_purchase_order1"           enctype="multipart/form-data">
+            <label for="item-dropdown">Select Farm</label>
+            <select id="item-dropdown" name="item-dropdown">
+              <option value="">Select Farm Name</option>
+              {% for farm in farms %}
+              <option value="{{ farm.name }}">{{ farm.name }}</option>
+              {% endfor %}
+            </select>
+            <input type="hidden" name="user" id="user" value="{{user.name}}">
+            <button type="submit" class="btn btn-danger">Create Puschase Request</button>
+		</form>
+    </div>
+  {% endblock%}
+  </body>
+</html>

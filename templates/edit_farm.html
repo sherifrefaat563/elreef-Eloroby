@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"    dir="ltr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>	
+h3{
+	color: gold;
+	background-color: blue;
+	text-align: center;
+}
+input{
+	color:blue;
+	font-weight: bolder;
+font-size: x-large;
+}
+.col-4{
+	color:blue;
+	font-size: larger;
+}
+</style>
+  	<meta charset="utf-8">
+  	<title>Edit supplier record </title>
+</head>
+<body>
+	<div class="container">	
+		<hr>
+    	<h3>Edit Name Record</h3>
+
+		<form  action="/update_farm"     method="POST">
+			<div class="container">
+				<input type="text" id="name" name="name"  value="{{ user.name}}" >
+				<input type="text" id="phone" name="phone"  value="{{ user.phone}}" >
+				<input type="text" id="email" name="email"  value="{{ user.email}}" >
+				<input type="text" id="owner_id" name="owner_id"  value="{{ user.owner_id}}" >
+				<input type="text" id="address1" name="address1"  value="{{ user.address1}}" >
+				<input type="text" id="address2" name="address2"  value="{{ user.address2}}" >
+				
+		</form>
+	</div>
+	  </body>
+</html>
+
+

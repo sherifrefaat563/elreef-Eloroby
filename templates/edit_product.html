@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en"    dir="ltr">
+
+<html>
+<head>
+  	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<title>Edit product items</title>
+		<script src="/static/script9.js"></script> 
+
+<style>  
+	.image {
+			position: absolute;
+			border: 1px solid transparent;
+			height: 35%;
+			width: 30%;
+			right: 69%;
+			top: 25%;
+			left: 15%;
+ }
+	img {
+				width:  80%;
+				height: 100%;
+			}
+
+		.form-container select {
+      width: 200px;
+      height: 30px;
+    }
+	#imagenFondo {
+			position: absolute;
+  		border: 1px solid blue;
+  		height: 250px;
+			top: 200px;
+		  left: 165px;
+  }
+</style>
+</head>
+
+<body dir="rtl">
+  	{% extends "index.html" %}
+	{% block content %}
+	<div class="container">
+		<a href="{{url_for('home')}}" class="home-button"> Home page </a>    
+		<h2>مرحبا ... {{ current_user.name }}</h2>
+		
+		<h3>تعديل بيانات صنف</h3>
+		<form  action="/update_product"   method="POST">
+			<div class="container">	
+	     		<input type="hidden" id="id" name="id"  value="{{ item.id}}" >
+					<input type="hidden" id="farm_id" name="farm_id"  value="{{item.farm_id}}" >
+					<input type="hidden" id="prod_category" name="prod_category"  value="{{ item.prod_category}}" >
+					<input type="hidden" id="prod_name" name="prod_name"  value="{{ item.prod_name}}" >
+					<input type="hidden" id="package" name="package"  value="{{ item.package}}" >
+			   
+					<div class="image">
+						<img src="/static/images/{{item.filename}}"  alt="{{item.filename}}">
+					 <hr>
+					</div>
+					<div class="row">
+						<button type="button" class="btn btn-dark btn-sm">الفئه</button>
+						&nbsp
+						<button type="button" class="btn btn-light dark btn-sm">{{ item.prod_category}}</button>
+						&nbsp&nbsp				
+						<button type="button" class="btn btn-dark btn-sm">الصنف</button>
+						&nbsp
+						<button type="button" class="btn btn-light dark btn-sm">{{ item.prod_name}}</button>
+						&nbsp&nbsp
+						<button type="button" class="btn btn-dark btn-sm">العبوه</button>
+						&nbsp
+						<button type="button" class="btn btn-light dark btn-sm">{{ item.package }}</button>
+				
+				<!input type="file"  onChange="preview_2(this);" id="image_path" 
+          name="image_path" accept=".jpg,.png,.pdf">
+      	<!img id="imagenFondo">
+ 
+				</div>
+				<br>
+				<div class="row">	
+					<button type="button" class="btn btn-dark btn-sm">سعر الوحده</button>
+					&nbsp
+					<input type="number"  id="unit_price" name="unit_price" value="{{ item.unit_price}}" >&nbsp&nbsp&nbsp&nbsp
+					<button type="button" class="btn btn-dark btn-sm">المخزون</button>
+					&nbsp
+					<input type="integer" id="stock"  name="stock" value="{{ item.stock}}  " >
+					<input type="hidden" id="event_datetime" name="event_datetime" value="{{ item.event_datetime}}  " >
+				
+				</div>
+
+				<br><br>	
+				<input type="submit" value="Save">
+ 			</div>
+		</form>
+	</div>
+	 {% endblock %}
+  </body>
+</html>

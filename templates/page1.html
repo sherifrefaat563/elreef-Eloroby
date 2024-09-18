@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>El-Reef El-Oroby</title>
+
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/thabit.css">
+  <link rel="stylesheet" href="http://www.fontstatic.com/f=jazeera,jazeera-light">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/amiri.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<style>
+@import url("http://www.fontstatic.com/f=jazeera,jazeera-light");
+.grid{
+            display: contents;
+            display: grid;
+            grid-gap: 10px;
+           
+        }
+.grid-item-1 {
+            grid-column: 1;
+            width: 100%;
+            font-size:medium;
+            padding: 5px;
+            text-align: left;
+    }
+.grid-container {
+            display: grid;
+            grid-gap: 5px; /* Adjust the gap between grid items as needed */
+        }
+.grid-item {
+            display: flex;
+            flex-direction: column; 
+            text-align: center;
+            margin-top: 20px;
+        }
+        h1{color:gold;}
+h3, h4, h5{
+        font-family: 'jazeera-light';
+      }            
+.card-title1{
+      text-align:center;
+      color: blue;
+      background-color: darkgreen;
+    }
+.list-group-item {
+      text-align: center;
+    } 
+.list-group {
+      text-align: center;
+      background-color:0;
+      font-style: normal;
+      font-weight: 800;
+    } 
+.card-body{
+      text-align: center;
+      font-weight: bolder;
+      color: black;
+    }
+img{
+  width:50%;
+  height:50%
+}
+</style>
+</head>
+<body>
+  {% extends "index.html" %}
+  {% block content %}
+    <div class="container">
+      <div class="grid-container">
+        <div class="grid-item grid-item-1">
+          <div class="shadow p-2 badge-primary">
+          <h1>مجتمع الريف اﻷوربي</h1>
+        </div><br>
+      <div>
+      <h3>{{store.activity}}</h3>
+    </div>
+    
+      <div class="container">  
+        <div class="card-group">
+          <div class="card">
+            <img src="static/images/sadat.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3>{{store.activity}}</h3>
+              <h4 class="card-title">{{store.store_name}}</h4>
+              <h4>
+              <a  href="https://wa.me/201019301893" class="link"><i class="fa fa-whatsapp "></i>اتصل بنا</a>
+               {{store.phone1}}<br>
+               {{store.phone2}}
+              </h4>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        <div class="card">
+          <img src="static/images/obama.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{store.name}}</h5>
+            <h4>
+            <a  href="https://wa.me/201001551946" class="link"><i class="fa fa-whatsapp "></i>&nbsp اتصل بنا &nbsp </a>
+                  رقم اﻷتصال :{{ store.phone1}}
+            </h4>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="static/images/sadat.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h4>
+            <a  href="https://wa.me/201001551946" class="link"><i class="fa fa-whatsapp "></i>&nbsp اتصل بنا &nbsp </a>
+                رقم اﻷتصال :
+            </h4>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+    {% endblock%}
+ 
+</body>
+</html>

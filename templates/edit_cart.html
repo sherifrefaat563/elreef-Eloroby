@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en"    dir="ltr">
+
+<html>
+<head>
+  	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Edit product items</title>
+
+<style>
+
+.container-input {
+		width:300px;
+	 	color: blueviolet;
+		text-align: center;
+		}
+	
+		h3{ 
+		color:gold;
+		background-color: blue;
+		text-align: center;
+	}
+
+	input[type="submit"] {
+   text-align: left;
+   font-family: 'Times New Roman', Times, serif;
+   border:blue #ff0000;
+   background-color: lightblue;
+
+ }
+	
+  .item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #ddd;
+}
+
+.item:hover .dropdown-menu {
+  display: block;
+}
+  </style>
+
+<script>
+document.querySelectorAll('.item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active');
+    item.querySelector('.dropdown-menu').classList.toggle('show');
+    });
+  });
+  
+</script>
+</head>
+<body dir="rtl">
+  	{% extends "index.html" %}
+	{% block content %}
+	<div class="container">
+		<a href="{{url_for('home')}}" class="home-button"> Home page </a>    
+		<h2>مرحبا ...{{owners.name}}  </h2>
+		<h3> *** تعديل طلبات الشراء ***</h3>
+		<hr>
+		<form  action="/update_cart" method="POST">
+			<div class="container">
+				
+				<input type="hidden" id="id" name="id"  
+				value="{{items.id}}" >
+				
+				<input type="hidden" id="buyer_id" name="buyer_id" 
+				value="{{ items.buyer_id}}">
+				
+				<input type="hidden" id="product_id" name="product_id"  
+				value="{{ items.product_id}}" >
+				
+				<input type="hidden" id="farm_id" name="farm_id"  value="{{ items.farm_id}}" >
+				
+				<input type="hidden"  id="package" name="package" value="{{items.package}}" >
+				
+				<input type="hidden"  id="unit_price" name="unit_price" value="{{items.unit_price}}" >
+				
+				<input type="hidden"  id="filename" name="filename" value="{{items.filename}}" >
+				
+				<input type="hidden"  id="order_status" name="order_status" value="{{items.order_status}}" >
+				
+				<button type="button" class="btn btn-dark btn-sm">الصنف</button>
+				<button type="button" class="btn btn-light btn-sm">{{ products.prod_category}}-{{ products.prod_name}}</button>
+				
+			  <button type="button" class="btn btn-dark btn-sm">العبوه</button>
+				<button type="button" class="btn btn-light btn-sm">{{items.package}}</button>
+				
+				&nbsp&nbsp
+				<button type="button" class="btn btn-dark btn-sm">اسم المشترى</button>
+				<button type="button" class="btn btn-light btn-sm">{{buyers.name}}</button>
+				&nbsp
+				<button type="button" class="btn btn-dark btn-sm">اسم المزرعه</button>
+				<button type="button" class="btn btn-light btn-sm">{{farms.name}}</button>
+	  		&nbsp
+				<button type="button" class="btn btn-dark btn-sm">تاريخ الطلب</button>
+				<button type="button" class="btn btn-light btn-sm">{{items.event_datetime}}</button>
+				<br><br>
+				<button type="button" class="btn btn-danger btn-sm">الكميه</button>
+				<input type="number" id="quantity" name="quantity" value="{{ items.quantity }}" placeholder="quantity">
+				<button type="button" class="btn btn-dark btn-sm">السعر</button>
+				<button type="button" class="btn btn-light btn-sm">{{items.unit_price}}</button>
+			</div>	
+		<input type="submit" value="Save">
+	</form>
+	</div>
+	 {% endblock %}
+  </body>
+</html>

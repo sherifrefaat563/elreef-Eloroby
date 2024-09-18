@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html  lang="en"    die="rtl">
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>{{ current_user.name }} : Farms List </title>
+</head>
+
+<body dir="rtl">
+    {% extends "index.html" %}
+    {% block content%}
+    <div class="container">
+        <a href="{{url_for('dashboard')}}" class="DB-button">Dashboard</a>
+        <a href="home" class="home-button">Home page</a>
+        <h5>مرحبا ..{{ current_user.name }} <i class="fa fa-user"></i></h5>
+        <hr>
+        <h2> *** Registered Farms *** </h2>
+        <table class="table table-striped">
+            <caption>Farms List</caption>
+                <strong>
+                <thead>
+                    <td>رقم</th> 
+                    <td>اسم المزرعه</th>
+                    <td>مالك المزرعه</th>
+                    <td>تليفون </th>
+                    <td>بريد الكترونى </th>
+                    <td>عنوان المزرعه</th>
+                    <td>عنوان المزرعه</th>
+                </thead>
+                <tbody>
+                <strong>
+                {% for farm, user in farms %}
+                <tr>
+                    <td>{{ farm.id }}</td>
+                    <td>{{ farm.name }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ farm.phone }}</td>
+                    <td>{{ farm.email }}</td>
+                    <td>{{ farm.address1 }}</td>
+                    <td>{{ farm.address2 }}</td>
+                </tr>
+                {% endfor %}
+                <br>
+            </tbody>
+        </table>
+    </div>
+        <footer class="footer">
+        <strong>&copy; Admin : Sherif Refaat  Tel: 01019301893</strong>
+    </footer>
+{% endblock %}
+</body>
+</html>
+

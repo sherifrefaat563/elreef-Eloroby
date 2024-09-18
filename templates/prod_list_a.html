@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html  lang="en"   dir="ltr">
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ current_user.name }} : Market products</title>
+</head>
+<!----Admin product list-->
+<body dir="rtl">
+    {% extends "index.html" %}
+    {% block content %}
+    <div class="container">
+        <a href="{{url_for('home')}}" class="home-button"> Home page </a>     
+        <h5>مرحبا ..{{ current_user.name }} <i class="fa fa-user"></i></h5>
+        <h2>  *** منتجات المزرعه ***</h2>
+            <table class="table table-striped">
+                <caption>منتجات المزرعه</caption>
+                <strong>    
+                <thead>
+                    <tr>
+                        <td>رقم</th>
+                        <td>اسم الصنف</td>
+                        <td>السعر/العبوه</td>
+                        <td>المخزون</td>
+                        <td>المزرعه</td>
+                        <td>تاريخ/ساعه اﻷضافه</td>
+                        <td>شراء</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if prods  %}
+                    {% for product, farm in prods %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.prod_category }}-{{product.prod_name}}</td>
+                        <td>{{ product.unit_price }}/{{ product.package }}</td>
+                        <td>{{ product.stock }}{{ product.package }}</td>
+                        <td>{{ farm.name }}</td>
+                        <td>{{ product.event_datetime }}</td>
+                        <td><a href="{{ url_for('add_to_cart', item_id=product.id, buyer= current_user.name) }}">
+                            <i class="fa fa-fw fa-cart-plus"></i></a></td>  
+                    </tr>
+                    </strong>
+                    {% endfor %}
+                {% else %}
+                {% endif %} 
+              </tbody>
+            </table>
+        </div>
+       {% endblock %}
+</body>
+</html>

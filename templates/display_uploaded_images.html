@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>title</title>
+</head>
+<body>
+  {% for image in store.images %}
+    <img src="{{ url_for('static', filename='images/' + image.filename) }}" alt="Store Image">
+{% endfor %}
+  
+</body>
+</html>

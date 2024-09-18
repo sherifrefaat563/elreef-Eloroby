@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>El-Reef El-Oroby</title>
+
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/thabit.css">
+  <link rel="stylesheet" href="http://www.fontstatic.com/f=jazeera,jazeera-light">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/amiri.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<style>
+@import url("http://www.fontstatic.com/f=jazeera,jazeera-light");
+.grid{
+            display: contents;
+            display: grid;
+            grid-gap: 10px;
+           
+        }
+.grid-item-1 {
+            grid-column: 1;
+            width: 100%;
+            font-size:medium;
+            padding: 5px;
+            text-align: left;
+    }
+.grid-item-2 {
+            grid-column: 2;
+            width:100%;
+            /*background-color: darkmagenta; */             
+    }
+.grid-item-3 {
+            grid-column: 3;
+            width:100%;
+            direction:rtl;
+         /*  align-items: left; */
+    }
+.grid-container {
+            display: grid;
+            /*grid-template-columns: 1fr 2fr 1fr; /* Adjust the number of columns as needed */
+            grid-gap: 5px; /* Adjust the gap between grid items as needed */
+        }
+.grid-item {
+            display: flex;
+            flex-direction: column; 
+            text-align: center;
+            margin-top: 20px;
+            
+            /*color: rgba(5, 48, 15, 0.84);
+            margin-right: 20px;
+            margin-top:20px;
+            /*border: 1px silver red;  
+            padding:20px;*/
+        }
+.grid-1 {
+            display:grid;
+            grid-template-columns: repeat(4, 1fr); /* Adjust the nber of columns as needed */
+            grid-gap: 1%; /* Adjust the gap between grid items */
+            }
+h1,h2{
+        font-style:normal;
+        text-align: center;
+        color:gold;
+        /*font-family:'Amiri', serif;*/
+        /*font-family: 'jazeera';*/
+        font-family: 'thabit';
+        /*font-family: 'jazeera-light';*/
+         } 
+h3, h4, h5{
+        font-family: 'jazeera-light';
+      }            
+.date{
+       background-color:darkmagenta ;
+        color: white;
+    }
+.time{
+        /*background-color: crimson;*/
+        color: darkgreen;
+        font-weight: bolder;
+    }
+/*th{
+        background-color:darkgreen;
+        color:antiquewhite
+    }*/
+.prayer-time {
+      font-family: "Courier New", monospace;
+      font-size: 20px;
+      direction:rtl    ;
+      color: blue;
+    }
+/*y{
+        color:blue;
+        background-color: ;
+        font-size: large;
+    }*/
+.card-title{
+      text-align: center;
+      color: blue;
+      background-color: lightblue;
+    }
+.list-group-item {
+      text-align: right;
+    } 
+.list-group {
+      text-align: center;
+      background-color:0;
+      font-style: normal;
+      font-weight: 800;
+    } 
+.card-body{
+      text-align: center;
+      font-weight: bolder;
+      color: black;
+    }
+
+</style>
+<script>
+        function displayDate() {
+          var currentDate = new Date();
+          var day = getDayName(currentDate.getDay());
+          var month = getMonthName(currentDate.getMonth());
+          var date = currentDate.getDate();
+          var year = currentDate.getFullYear();
+    
+          // Format the date
+          var formattedDate = day + ", " + month + " " + date + ", " + year;
+    
+          // Display the date on the web page
+          document.getElementById("date").textContent = formattedDate;
+        }
+        function getDayName(dayIndex) {
+          var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+          return days[dayIndex];
+        }
+        function getMonthName(monthIndex) {
+          var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          return months[monthIndex];
+        }
+    //------------
+          function displayTime() {
+          var currentDate = new Date();
+          var hours = currentDate.getHours();
+          var minutes = currentDate.getMinutes();
+          var seconds = currentDate.getSeconds();
+          // Format the time
+          var formattedTime = formatTime(hours, minutes, seconds);
+          document.getElementById("time").textContent = formattedTime;
+          // Update the clock every second
+          setTimeout(displayTime, 1000);
+        }
+        function formatTime(hours, minutes, seconds) {
+          hours = addLeadingZero(hours);
+          minutes = addLeadingZero(minutes);
+          seconds = addLeadingZero(seconds);
+          return hours + ":" + minutes + ":" + seconds;
+        }
+        function addLeadingZero(number) {
+          if (number < 10) {
+            return "0" + number;
+          }
+          return number;
+        }
+        function fetchPrayerTimes() {
+          fetch('https://api.aladhan.com/v1/timingsByCity?city=cairo&country=egypt&method=1')
+            .then(response => response.json())
+            .then(data => {
+              var prayerTimes = data.data.timings;
+              displayPrayerTimes(prayerTimes);
+            })
+            .catch(error => {
+              console.log('Error fetching prayer times:', error);
+            });
+        }
+        function displayPrayerTimes(prayerTimes) {
+          document.getElementById("fajr").textContent = prayerTimes.Fajr;
+          document.getElementById("dhuhr").textContent = prayerTimes.Dhuhr;
+          document.getElementById("asr").textContent = prayerTimes.Asr;
+          document.getElementById("maghrib").textContent = prayerTimes.Maghrib;
+          document.getElementById("isha").textContent = prayerTimes.Isha;
+        }
+    
+    // JavaScript
+document.getElementById('whatsapp-call-btn').addEventListener('click', function() {
+  var phoneNumber = '1234567890'; // Replace with the desired phone number
+
+  // Open WhatsApp with the specified phone number
+  window.open('https://wa.me/' + phoneNumber);
+});
+</script> 
+
+</head>
+<body onload= "displayDate(); displayTime(); fetchPrayerTimes()" >
+
+    <!------------------>
+  <div class="grid-container">
+    <div class="grid-item grid-item-1" >
+        <a href="about.html" target="_blank"><i class="fa fa-bell-o"></i><y>&nbsp&nbspعن الموقع &nbsp</y></a>    
+            </div>
+    <div class="grid-item grid-item-2">
+      <div class="shadow p-2 badge-primary">
+            <h2>مجتمع الريف اﻷوربي  </h2>
+      </div><br>
+      <h3>بقاله و ماركت   </h3>
+    </div>
+    <div class="grid-item grid-item-3">
+      <div class="date" id="date"></div>
+        <div class="time" id="time"></div>
+          <a  href="view_gallery.html" class="link"> <i class="fa fa-camera-retro"></i><y>&nbsp&nbsp معرض صور &nbsp&nbsp</y></a>
+          <a  href="map-page2.html"><i class="fa fa-search"></i><y>&nbsp الموقع &nbsp</y></a>
+        </div>
+      </div>
+      <hr>
+      <div class="container">  
+        <div class="card-group">
+          <div class="card">
+            <img src="static/images/sadat.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Mina Market</h5>
+              <h4>
+              <a  href="https://wa.me/201019301893" class="link"><i class="fa fa-whatsapp "></i>&nbsp اتصل بنا &nbsp </a>
+                رقم اﻷتصال :01001551946
+              </h4>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        <div class="card">
+          <img src="static/images/sadat.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Mina Market</h5>
+            <h4>
+            <a  href="https://wa.me/201001551946" class="link"><i class="fa fa-whatsapp "></i>&nbsp اتصل بنا &nbsp </a>
+                  رقم اﻷتصال :01001551946
+            </h4>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="static/images/sadat.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Mina Market</h5>
+            <h4>
+            <a  href="https://wa.me/201001551946" class="link"><i class="fa fa-whatsapp "></i>&nbsp اتصل بنا &nbsp </a>
+                رقم اﻷتصال :01019301893
+            </h4>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+      
+</body>
+</html>

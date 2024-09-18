@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>El-Reef El-Oroby</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/thabit.css">
+  <link rel="stylesheet" href="http://www.fontstatic.com/f=jazeera,jazeera-light">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/amiri.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <style>
+    @import url("http://www.fontstatic.com/f=jazeera,jazeera-light");
+
+  .card img{
+    width:100%;
+    height:100%;
+    }
+
+  </style>
+
+</head>
+<body>
+  {% extends "index.html" %}
+  {% block content%}
+    <div class="container">
+      <a href="{{url_for('home')}}" class="home-button"> Home page </a>
+      <br>
+      <h2 class="text-center">Commercial Stores List</h2>
+      <div class="row">
+        {% for s in store %}
+        <div class="col-md-12">
+          <div class="card">
+          <h3>{{ s.activity }}</h3>
+          <img src="static/images/{{s.filename}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title">{{ s.store_name }}</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">تليفون : {{s.phone1}}</li>
+                <li class="list-group-item">تليفون : {{s.phone2}}</li>
+              </ul>
+              <a href="#" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

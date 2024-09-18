@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"   dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<title>Add Buisness</title>
+<!link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css') }}">
+<script src="/static/script9.js"></script> 
+
+<style>
+	.container{
+		text-align:left;
+	}
+	h4{
+		text-align:center ;
+		font-size: larger;
+			}
+	.text-dir{
+		text-align: right;
+		}
+	input[type="text"] {
+      width: 40cm;
+      height: 1cm;
+			text-align: right;
+			color:black;
+			background-color:white;
+    }
+    .form-container select {
+      width: 200px;
+      height: 30px;
+    }
+		#store_name{
+			width:230px;
+		}
+		
+		#address{
+			width:500px;
+			height: 30px;
+			text-align: center;
+		  color:blue;
+   		background-color: whitesmoke;
+		}
+		#phone1, #phone2{
+   width: 170px;
+   height: 30px;
+   text-align: center;
+   color:blue;
+   background-color: whitesmoke;
+}
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Change this color */
+            color: white; /* Change text color */
+            border-radius: 5px;
+            border: none;
+        }
+
+        .custom-file-upload input {
+            display: none; /* Hide the default file input */
+        }
+
+custom-image{
+	height:200px; 
+	width:300px;
+}
+</style>
+
+</head>
+<body dir="rtl"> 
+  	{% extends "index.html" %}
+  	{% block content%}
+	<div class="container">
+		<a href="{{url_for('dashboard')}}" class="DB-button">Dash Board</a>
+    <a href="{{url_for('home')}}" class="home-button"> Home page </a>
+    <br>
+		<h5>Wellcom {{ current_user.name }}</h5>
+		<h3>*** اضافه محل تجارى ***</h3>
+	
+	
+		<form action="/save_store"  method="POST" method="POST" enctype="multipart/form-data">
+			<div class="container">
+				<h4> بيانات المالك</h4>
+				<hr>
+				<div class="owner">
+					User ID	
+					<button type="button" class="btn btn-danger btn-sm" placeholser="ID">{{user.id}}</button>
+					<input type="hidden" name="user_id" id="user_id"   value="{{user.id}}">
+					&nbsp&nbsp&nbsp&nbsp	
+					اﻷسم
+					<button 	type="button" class="name-button"  placeholser="Name">{{user.name}}</button>
+					<input type="hidden" name="name" id="name"  value="{{user.name}}">
+					&nbsp&nbsp&nbsp&nbsp
+					تليفون
+          <button type="button" class="btn btn-secondary btn-sm" placeholser="phone">{{user.phone}}</button>
+					<input type="hidden" name="phone" value="{{user.phone}}">
+					&nbsp&nbsp&nbsp&nbsp
+					بريد الكترونى
+          <button type="button" class="email-button" placeholser="EMail">{{user.email}}</button>
+					<input type="hidden" name="email" value="{{user.email}}">
+				</div>
+  			<div class="store"></div>
+          <br><br>
+          <h4> بيانات المحل التجاري </h4>				
+          <hr>
+          اسم المحل
+					<input type="text"  id="store_name"  name="store_name" value="" placeholder="Store Commercial Name">
+          &nbsp&nbsp
+  				اختار نوع النشاط
+					<label for="activity">اختار نوع النشاط</label>
+          <select name="activity" id="activity"  	placeholder="Select Business Activity">
+              <option value="select"> Select Business Activity</option>
+              <option value="مطعم / كافيه">مطعم / كافيه</option> 
+              <option value="بقاله / ماركت">بقاله / ماركت</option>
+              <option value="مركز اتصالات وشحن">مركز اتصالات وشحن</option>
+              <option value="مخبز">مخبز</option>
+              <option value="مشتل ولوازم حدائق">مشتل ولوازم حدائق</option>
+              <option value="أعمال نجاره واخشاب">أعمال نجاره واخشاب</option>
+              <option value="أعمال كهرباء">أعمال كهرباء</option>
+              <option value="أعمال حداده ودهانات">أعمال حداده ودهانات</option>
+							<option value="ورشه ميكانيكا سيارات">ورشه ميكانيكا سيارات</option>
+							<option value="جزاره لحوم و دواجن">جزاره لحوم و دواجن</option>
+							<option value="خدمات طبيه">خدمات طبيه</option>
+							<option value="">اخرى</option>
+          </select>
+          &nbsp&nbsp
+					Advert. Class
+					<label for="adv_class">Advert. Class</label>
+          <select name="adv_class" id="adv_class"  	placeholder="Select Business Class">
+              <option value="select"> Select Business Activity</option>
+              <option value="A">Class A Advert</option> 
+              <option value="B">Class B Advert</option>
+              <option value="C">Class C Advert</option>
+          </select><br><br>
+          تليفون
+				  <input type="text" name="phone1"  id="phone1" placeholder="phone1">{{store.phone1}}
+          &nbsp&nbsp 
+          تليفون ارضى
+          <input type="text" name="phone2"  id="phone2" placeholder="Land Line">{{store.phone2}}
+          &nbsp&nbsp &nbsp&nbsp 
+          العنوان
+          <input type="text" name="address"  id="address" placeholder="Address">{{store.address}}
+					<br><br>
+					
+					<label class="custom-file-upload">
+						<input type="file" onChange="preview_2(this)" id="image_path" name="image_path" >
+						Choose File
+					</label>
+					<img id="imagenFondo custom-image" alt="image">    
+          &nbsp&nbsp &nbsp&nbsp 
+          &nbsp&nbsp &nbsp&nbsp 
+					&nbsp&nbsp &nbsp&nbsp 
+          &nbsp&nbsp &nbsp&nbsp 
+
+
+					<button type="submit" class="btn btn-danger">Save Store</button>
+				</div>
+			</form>
+	</div>
+	{% endblock %}
+
+	</body>
+</html>

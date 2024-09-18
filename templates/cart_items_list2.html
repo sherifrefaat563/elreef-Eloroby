@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  lang="en"    dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ current_user.name }}</title>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css') }}">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
+</script>
+<style>
+  custom-font-1{
+    font-size:16px;
+    color:red;    
+  }
+  custom-font-1{
+    font-size:246px;
+    color:red;    
+  }
+
+</style>
+
+</head>
+<!-- created from owner dashboard to list farm products -->
+<body dir="rtl"> 
+    {% extends "index.html" %}
+    {% block content %}
+    <div class="container">
+        <a href="{{url_for('home')}}" class="home-button"> Home page </a> 
+        <h5>مرحبا ..{{ current_user.name }} <i class="fa fa-user"></i></h5>
+        <h2>*** طلبات الشراء-مزرعه {{farms.name}} ***</h2>
+        <hr>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                    <th>No1</th>
+                    <th>اسم الصنف</th>
+                    <th>السعر</th>
+                    <th>الكميه</th>
+                    <th>اجمالى</th>
+                    <th>المشتري</th>
+                    <th>تاريخ/وقت الطلب</th>
+                    <th>حاله الطلب</th>
+                    <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody id="farm-list">
+
+              {% for item , product , buyer in items %}
+                <strong>
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ product.prod_category }}-{{ product.prod_name }}</td>
+                    <td>{{ item.unit_price }}/{{ item.package }}</td>
+                    <td>{{ item.quantity }}{{ item.package }}</td>
+                    <td>{{ item.unit_price * item.quantity}}</td>
+                    <td>{{ buyer.name }}</td>
+                    <td>{{ item.event_datetime }}</td>
+                    <td><a href="{{url_for('order_status', index=item.order_status)}} custom-font-1">{{ item.order_status }} </a></td>
+                    
+                    <td><a class="nav-link" aria-label="Twitter" 
+                      href="{{url_for('edit_cart', item_id=item.id)}}"> 
+                    <i class="fa fa-edit custom-font-2"></i></a>
+                      </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="POST"  action="/create_purchase_order2"        enctype="multipart/form-data">
+          <label for="item-dropdown">Select Name</label>
+          <select id="item-dropdown" name="item-dropdown">
+            <option value="">Select Buyer Name</option>
+            {% for buyer in buyers %}
+            <option value="{{ buyer.name }}">{{buyer.name}}</option>
+            {% endfor %}
+          </select>
+          <input type="hidden" name='farm' id="farm" value="{{farms.name}}">
+          <button type="submit" class="btn btn-danger">Create Puschase Request</button>
+        </form>
+     </div>
+      {% endblock%}
+  </body>
+</html>

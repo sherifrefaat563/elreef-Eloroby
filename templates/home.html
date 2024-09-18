@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title> elreef eloroby Community </title>
+    <script src="/static/script9.js"></script> 
+
+<style>
+    button{
+        width:6cm;
+        background-color: rgb(81, 54, 202);
+        align-items: center;
+    }
+    .container-A{
+        direction: rtl;
+        border-radius: 5px;
+        background-color: black;
+        width:100%;
+        color:blue;
+        padding:5px ;
+        text-align: right;
+        margin-top: 0px;
+        }
+
+</style>
+
+<script>
+    function submitForm(){
+      document.getElementById("myForm").submit();
+      }
+    
+</script>
+  
+<meta name="keywords" content="elreef-eloroby, elreef, عبد الله سعد, الريف اﻷوربي">
+<meta name="description" content="cairo-alex road kilo 58 ">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles1.css') }}">
+
+</head>
+
+<body>
+{% extends "index.html" %}
+    {% block content %}
+    <div class="container-A">
+        <a href="{{url_for('login')}}" target="_blank" class="btn btn-primary btn-sm">Login</a>
+        <a href="{{url_for('prod_list')}}" class="btn btn-danger btn-sm">عرض منتجات السوق</a>
+        <a href="https://www.masrawy.com"  class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true" ><i class="fa fa-fw fa-newspaper-o">&nbsp</i>News</a>
+        <a href="view_gallery_images" class="btn btn-danger btn-sm" tabindex="-1" role="button" aria-disabled="true" ><i class="fa fa-camera-retro">&nbsp</i>Gallary</a>
+        <a href="mailto:s.refaat@mail.com" class="btn btn-success btn-sm" tabindex="-1" role="button" aria-disabled="true" ><i class="fa fa-fw fa-envelope">&nbsp</i>Mail admin</a>
+        <a href="map-page" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true" ><i class="fa fa-search">&nbsp</i></i>Location Map</a>
+    </div>
+    <h2>مجتمع الريف اﻷوربي</h2>
+    <div class="grid-1">
+        <div class="grid-item">القاهره القديمه
+            <div>
+                <div class="image-container">
+                    <div class="image-frame">
+                        <a href="static/images/old.jpeg" target="_blank">
+                            <img src="/static/images/old.jpeg" alt="Description of the image">
+                        </a>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="grid-item">جامع الرفاعى
+            <div>
+                <div class="image-container">
+                    <div class="image-frame">
+                        <a  href="/static/images/Rifai.jpg" target="_blank">
+                            <img src="/static/images/Rifai.jpg" alt="Image Description">
+                        </a> 
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="grid-item">مؤسس الريف اﻷوربي 
+            <div>
+                <div class="image-container">
+                    <div class="image-frame">
+                        <a  href="static/images/Blue-mosque.jpg" target="_blank"> 
+                            <img src="static/images/abdulla-saad.jpeg" alt="Image Description">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">جامع ايوب
+            <div>
+                <div class="image-container">
+                    <div class="image-frame">
+                        <a href="static/images/Eyup-Mosque.jpg" target="_blank">    
+                            <img src="static/images/Eyup-Mosque.jpg" alt="Image Description">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">EGYPT
+            <div>
+                <div class="image-container">
+                    <div class="image-frame">
+                        <a  href="static/images/old.jpeg" target="_blank">
+                            <img src="static/images/old.jpeg" alt="Image Description">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add more grid items as needed -->
+    <div class="grid">
+        <div class="grid-item grid-item-1" >
+            <a href="complain1" class="btn btn-danger">بلاغ عن اعطال خدمات الريف</a>
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-title">
+                    <div class="card-body">
+                        <ul>
+                            <p>ماء الري والابار</p>
+                            <p>اعطال الكهرباء</p>
+                            <p>الأمن والحراسه</p>
+                            <p>النظافه والطرق</p>
+                        </ul>
+                        <a  href="complain1" class="btn btn-danger btn-sm" target="_blank">View</a> 
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <a href="#" class="btn btn-info">العياده الطبيه</a>
+                    <img src="static/images/clinic.jpeg" " class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">العياده الطبيه</h5>
+                        <p class="card-text">
+                                    مواعيد العمل 
+                                    الساعه  09:00 صباحا    -  الساعه 7:00 مساء
+                                    ارقام اﻷتصال: 
+                                    رقم #1
+                                    رقم #2
+                                    مسئول اﻷستقبال :
+                                    السيد: دكتور  س 
+                            .</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <a href="#" class="btn btn-info">الصيدليه</a>
+                    <img src="static/images/pharmacy.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pharmacy</h5>
+                            <p class="card-text">
+                                                        الصيدليه :
+                                مواعيد العمل :
+                                الساعه  09:00 صباحا    -  الساعه 10:00 مساء
+                                ارقام اﻷتصال: 
+                                رقم #1
+                                رقم #2
+                                مسئول اﻷستقبال :
+                                السيد: دكتور  س 
+                            </p>
+                        <a href="#" class="btn btn-primary">لينك</a>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item grid-item-2">
+                <!img src="static/images/abdulla-saad.jpeg">
+                <img src="static/images/reef-1.jpeg" alt="entrance">
+                <img src="static/images/entr4.jpeg"  alt="entrance">
+                <!img src="static/images/entr2.jpeg">
+                <hr>
+                <!img src="static/images/entr4.jpeg">
+                <hr>
+                <!img src="static/images/Pic27.jpeg">
+            </div>
+            <div class="grid-item grid-item-3">
+                <a href="{{url_for('prod_list')}}" class="btn btn-danger">عرض منتجات السوق</a>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">معرض منتجات الريف اﻷوربى
+                        القاعه الصيفيه - مدخل الريف اﻷوربي
+                        </h5>
+                    </div>
+                </div>
+                <hr>
+                <a href="" class="btn btn-danger"> بخث عن خدمات عامه بالريف</a>
+                <form  id="myForm" action="store_list_by_activity" method="POST">
+                    <select name="activity"  id="activity" >
+                      <option value="" selected>بحث بأسم النشاط</option>
+                      <option value="مطعم / كافيه">مطعم / كافيه</option> 
+                      <option value="بقاله / ماركت">بقاله / ماركت</option>
+                      <option value="مركز اتصالات وشحن">مركز اتصالات وشحن</option>
+                      <option value="مخبز">مخبز</option>
+                      <option value="مشتل ولوازم حدائق">مشتل ولوازم حدائق</option>
+                      <option value="أعمال نجاره واخشاب">أعمال نجاره واخشاب</option>
+                      <option value="أعمال كهرباء">أعمال كهرباء</option>
+                      <option value="أعمال حداده ودهانات">أعمال حداده ودهانات</option>
+                      <option value="ورشه ميكانيكا سيارات">ورشه ميكانيكا سيارات</option>
+                      <option value="جزاره لحوم و دواجن">جزاره لحوم و دواجن</option>
+                      <option value="خدمات طبيه">خدمات طبيه</option>
+                      <option value="">اخرى</option>
+                    </select>
+                    <i class="fa fa-search search-icon" 
+                    onclick="submitForm()"></i>
+                  </form>
+                <hr>
+                <div class="card" style="width: 18rem;">
+                    <a href="#" class="btn btn-info">مزارع</a>
+                    <img src="static/images/farm1-b.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">مزرعه القدس</h5>
+                            <p class="card-text">
+                            </p>
+                        <a href="#" class="btn btn-primary">لينك</a>
+                    </div>
+                </div>
+              </div>
+            <!-- Add more grid items as needed -->
+        </div>
+        <footer class="footer">
+            <strong>&copy; Admin Mail: s.refaat@mail.com</strong>
+        </footer>
+        {% endblock %}
+    </body>
+ </html>

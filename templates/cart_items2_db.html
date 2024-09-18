@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>title</title>
+</head>
+<body>
+  {% for item, product, farm, buyer in row %}
+<div class="title">
+    <button type="button" class="btn btn-primary btn-sm">Record No</button>
+    <button type="button" class="btn btn-danger btn-sm">{{ loop.index }}</button>&nbsp/
+    <button type="button" class="btn btn-danger btn-sm">{{ total_records }}</button>
+    <hr>
+    <div>
+        <button type="button" class="btn btn-primary btn-sm"> مزارع&nbsp</button>
+        <button type="button" class="btn btn-light btn-sm">{{ farm.name }}</button>
+        <button type="button" class="btn btn-primary btn-sm"> تليفون</button>
+        <button type="button" class="btn btn-light btn-sm">{{ farm.phone }}</button>
+        <button type="button" class="btn btn-primary btn-sm"> بريد </button>
+        <button type="button" class="btn btn-light btn-sm">{{ farm.email }}</button>
+    </div>
+    <div class="image">
+        <img src="/static/images/{{ row.filename }}" alt="{{ row.filename }}">
+        <a href="{{ url_for('delete_item_from_cart', item_id=row.id) }}"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i>
+    </div>
+    <hr>
+    <div>
+        <button type="button" class="btn btn-dark btn-sm">اسم الصنف/المنتج</button>
+        <button type="button" class="btn btn-light btn-sm">{{ product.prod_category }}-{{ product.prod_name }}</button>
+        &nbsp
+        <button type="button" class="btn btn-dark btn-sm">المشترى</button>
+        <button type="button" class="btn btn-danger btn-sm">{{ buyer.name }}</button>
+        <button type="button" class="btn btn-dark btn-sm">تليفون</button>
+        <button type="button" class="btn btn-danger btn-sm">{{ buyer.phone }}</button>
+        <hr>
+        <button type="button" class="btn btn-dark btn-sm">السعر</button>
+        <button type="button" class="btn btn-light btn-sm">{{ row.unit_price }}</button>
+        <button type="button" class="btn btn-dark btn-sm">الكميه</button>
+        <button type="button" class="btn btn-light btn-sm">{{ row.quantity }}</button>
+        <button type="button" class="btn btn-dark btn-sm">اجمالى السعر</button>
+        <button type="button" class="btn btn-light btn-sm">{{ row.quantity * item.unit_price }}</button>
+        <button type="button" class="btn btn-dark btn-sm">تاريخ الاضافه </button>
+        <button type="button" class="btn btn-light btn-sm">{{ row.event_datetime }}</button>
+    </div>
+</div>
+{% endfor %}
+
+</body>
+</html>
